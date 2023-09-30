@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://cq76cmknhfjbu"]
+[gd_scene load_steps=6 format=3 uid="uid://cq76cmknhfjbu"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_mic1g"]
+[ext_resource type="PackedScene" uid="uid://dka03cdpi5e7s" path="res://scenes/ui/main_menu.tscn" id="2_akvxq"]
+[ext_resource type="PackedScene" uid="uid://csfb1pd54nbls" path="res://scenes/ui/credits.tscn" id="3_0k64c"]
+[ext_resource type="PackedScene" uid="uid://coqgvdkqrbi4x" path="res://scenes/level.tscn" id="4_hn5l2"]
+[ext_resource type="PackedScene" uid="uid://cqid43pim76qe" path="res://scenes/ui/pause_menu.tscn" id="5_07pgh"]
 
 [node name="Main" type="Node"]
+process_mode = 3
+script = ExtResource("1_mic1g")
+main_menu_scene = ExtResource("2_akvxq")
+credits_scene = ExtResource("3_0k64c")
+level_scene = ExtResource("4_hn5l2")
+pause_scene = ExtResource("5_07pgh")
