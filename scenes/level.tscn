@@ -72,6 +72,14 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 720896, 0, 0, 19, 0, 0, 720915, 1,
 
 [node name="Player" parent="." instance=ExtResource("4_b6cyb")]
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 768
+limit_bottom = 768
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
 [node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_bv5dq")]
 position = Vector2(722, 269)
 collision_mask = 2
