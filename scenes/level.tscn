@@ -77,9 +77,6 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 720896, 0, 0, 19, 0, 0, 720915, 1,
 position = Vector2(408, 360)
 collision_layer = 1
 collision_mask = 6
-_max_move_speed = 150.0
-_max_health = 100
-_max_rotation_speed = 7
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0
