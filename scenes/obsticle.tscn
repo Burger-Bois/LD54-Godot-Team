@@ -13,7 +13,6 @@ debug_color = Color(0.419608, 0.0666667, 0.666667, 0.419608)
 metadata/_edit_lock_ = true
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-radius = 10.0
 vertices = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
 avoidance_layers = 3
 metadata/_edit_lock_ = true
