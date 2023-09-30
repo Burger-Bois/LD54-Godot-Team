@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cbyb6qadtydrw" path="res://assets/water.png" id="1_x14sm"]
 [ext_resource type="Texture2D" uid="uid://dmuw3g0713wa0" path="res://assets/island.png" id="2_a3ue1"]
 [ext_resource type="Texture2D" uid="uid://6vqlb61b2kvx" path="res://assets/wall.png" id="3_3dy2v"]
-[ext_resource type="PackedScene" uid="uid://hvj3d41rvuub" path="res://scenes/player.tscn" id="4_b6cyb"]
+[ext_resource type="PackedScene" uid="uid://cvktgouiehfv2" path="res://scenes/player.tscn" id="4_b6cyb"]
 [ext_resource type="PackedScene" uid="uid://bb6fupav162eu" path="res://scenes/enemy.tscn" id="4_bv5dq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gmi7p"]
