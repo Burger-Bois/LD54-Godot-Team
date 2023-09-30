@@ -14,6 +14,9 @@ var level_scene: PackedScene
 @export
 var pause_scene: PackedScene
 
+@export
+var ui_canvas_layer: CanvasLayer
+
 var _main_menu: MainMenu
 var _credits: Credits
 var _level: Node
@@ -42,7 +45,7 @@ func load_main_menu():
 	main_menu.credits_button_pressed.connect(load_credits)
 	
 	_main_menu = main_menu
-	add_child(_main_menu)
+	ui_canvas_layer.add_child(_main_menu)
 	
 	_playing = false
 
@@ -54,7 +57,7 @@ func load_credits():
 	credits.back_button_pressed.connect(load_main_menu)
 	
 	_credits = credits
-	add_child(_credits)
+	ui_canvas_layer.add_child(_credits)
 	
 	_playing = false
 
@@ -71,7 +74,7 @@ func load_level():
 	pause_menu.hide()
 	
 	_pause_menu = pause_menu
-	add_child(pause_menu)
+	ui_canvas_layer.add_child(pause_menu)
 	
 	_playing = true
 
