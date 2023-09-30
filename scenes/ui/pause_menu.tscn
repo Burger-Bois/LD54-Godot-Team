@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqid43pim76qe"]
+[gd_scene load_steps=4 format=3 uid="uid://cqid43pim76qe"]
 
 [ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_0dvni"]
+[ext_resource type="Theme" uid="uid://dfbjrxbf4lkxs" path="res://resources/theme.tres" id="1_8kebj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npb0k"]
+bg_color = Color(0, 0, 0, 0.564706)
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_8kebj")
 script = ExtResource("1_0dvni")
 
 [node name="Background" type="Panel" parent="."]
@@ -20,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_npb0k")
 
 [node name="Rows" type="VBoxContainer" parent="."]
 layout_mode = 1
