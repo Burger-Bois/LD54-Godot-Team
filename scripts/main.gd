@@ -15,9 +15,6 @@ var level_scene: PackedScene
 var pause_scene: PackedScene
 
 @export
-var level_canvas_layer: CanvasLayer
-
-@export
 var ui_canvas_layer: CanvasLayer
 
 var _main_menu: MainMenu

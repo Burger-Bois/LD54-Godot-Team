@@ -6,14 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://coqgvdkqrbi4x" path="res://scenes/level.tscn" id="4_hn5l2"]
 [ext_resource type="PackedScene" uid="uid://cqid43pim76qe" path="res://scenes/ui/pause_menu.tscn" id="5_07pgh"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("level_canvas_layer", "ui_canvas_layer")]
+[node name="Main" type="Node" node_paths=PackedStringArray("ui_canvas_layer")]
 process_mode = 3
 script = ExtResource("1_mic1g")
 main_menu_scene = ExtResource("2_akvxq")
 credits_scene = ExtResource("3_0k64c")
 level_scene = ExtResource("4_hn5l2")
 pause_scene = ExtResource("5_07pgh")
-level_canvas_layer = NodePath("")
 ui_canvas_layer = NodePath("UI")
 
 [node name="UI" type="CanvasLayer" parent="."]
