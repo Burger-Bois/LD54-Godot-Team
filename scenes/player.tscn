@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbilrdeoifom8"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_eitml"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljupp"]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_eitml")
+speed = 250
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ljupp")
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+metadata/_edit_lock_ = true
