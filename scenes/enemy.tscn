@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb6fupav162eu"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_pfhrn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1rnnr"]
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_pfhrn")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1rnnr")
+debug_color = Color(0.960784, 0.176471, 0.207843, 0.419608)
+metadata/_edit_lock_ = true
