@@ -1,19 +1,21 @@
 extends CharacterBody2D
 class_name Player
 
-
-const MAX_MOVE_SPEED = 300.0
-const MAX_HEALTH = 100
+# consts / exposed vars
+const _max_move_speed = 300.0
+const _max_health = 100
+const _max_rotation_speed = 7
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var move_speed = 0
-var move_speed_modifier = 1.0
-var health = MAX_HEALTH
+var move_speed: float = 0
+var move_speed_modifier: float = 1
+var health = _max_health
+
+var mouse_position:Vector2
 
 
 func _physics_process(delta):
-	
 	var direction := Vector2(
 		# This first line calculates the X direction, the vector's first component.
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -25,20 +27,28 @@ func _physics_process(delta):
 	
 	velocity = direction.normalized() * move_speed
 	var motion = velocity * delta
-	move_and_collide(motion) 
+	move_and_collide(motion)
 	
 	#move_and_slide()
 	
 func _process(delta):
+	##self.look_at(mouse_position) # bad, non-phsysics based rotation
+	mouse_position = self.get_global_mouse_position()
+	var rotation_direction := get_angle_to(mouse_position)
+	
+	# var rotation_speed = length of tangent of player's aim vector to the mouse % 
+	
+	rotation += rotation_direction * _max_rotation_speed * delta
+	# apply_torque(angle_to_mouse * _max_rotation_speed)
 	set_move_speed_based_on_health()
 
 func set_move_speed_based_on_health():
-	move_speed_modifier = health / MAX_HEALTH
+	move_speed_modifier = health / _max_health
 	
 	if(move_speed_modifier < 0.5):
 		move_speed_modifier = 0.5
 		
-	move_speed = MAX_MOVE_SPEED * move_speed_modifier
+	move_speed = _max_move_speed * move_speed_modifier
 
 #OLD
 	# Add the gravity.
