@@ -1,3 +1,71 @@
-[gd_scene format=3 uid="uid://coqgvdkqrbi4x"]
+[gd_scene load_steps=11 format=3 uid="uid://coqgvdkqrbi4x"]
+
+[ext_resource type="Texture2D" uid="uid://cbyb6qadtydrw" path="res://assets/water.png" id="1_x14sm"]
+[ext_resource type="Texture2D" uid="uid://dmuw3g0713wa0" path="res://assets/island.png" id="2_a3ue1"]
+[ext_resource type="PackedScene" uid="uid://cbilrdeoifom8" path="res://scenes/player.tscn" id="3_knnai"]
+[ext_resource type="PackedScene" uid="uid://bb6fupav162eu" path="res://scenes/enemy.tscn" id="4_bv5dq"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gmi7p"]
+vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21088"]
+texture = ExtResource("1_x14sm")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gmi7p")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_a76bw"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5e31"]
+texture = ExtResource("2_a3ue1")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_a76bw")
+
+[sub_resource type="TileSet" id="TileSet_58y2h"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_21088")
+sources/1 = SubResource("TileSetAtlasSource_o5e31")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08nkb"]
 
 [node name="Node2D" type="Node2D"]
+process_mode = 1
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_58y2h")
+cell_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 720896, 0, 0, 19, 0, 0, 720915, 0, 0, 131084, 0, 0, 196620, 0, 0, 196619, 0, 0, 262155, 0, 0, 131083, 0, 0, 262156, 0, 0, 131089, 1, 0, 196625, 1, 0, 262161, 1, 0, 262162, 1, 0, 196626, 1, 0, 131090, 1, 0, 131082, 0, 0, 196618, 0, 0, 262154, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 1, 0, 327693, 1, 0, 262157, 1, 0, 196621, 0, 0, 131085, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_knnai")]
+position = Vector2(303, 206)
+
+[node name="enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_bv5dq")]
+position = Vector2(391, 104)
+target = NodePath("../Player")
+
+[node name="obsticle" type="Area2D" parent="."]
+position = Vector2(348, 128)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obsticle"]
+shape = SubResource("RectangleShape2D_08nkb")
+debug_color = Color(0.419608, 0.0666667, 0.666667, 0.419608)
+metadata/_edit_lock_ = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="obsticle"]
+radius = 10.0
+vertices = PackedVector2Array(0, -5, -3, -10, 5, -8, 8, 2, 5, 6, -5, 7, -4, -1)
+avoidance_layers = 3
+metadata/_edit_lock_ = true
