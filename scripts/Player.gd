@@ -1,15 +1,19 @@
 extends CharacterBody2D
-
 class_name Player
 
-# Movement speed in pixels per second.
-@export var speed := 500
 
-#onready var animated_sprite: AnimatedSprite = $AnimatedSprite
+const MAX_MOVE_SPEED = 300.0
+const MAX_HEALTH = 100
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var move_speed = 0
+var move_speed_modifier = 1.0
+var health = MAX_HEALTH
 
 
-func _physics_process(_delta: float) -> void:
-	# Once again, we call `Input.get_action_strength()` to support analog movement.
+func _physics_process(delta):
+	
 	var direction := Vector2(
 		# This first line calculates the X direction, the vector's first component.
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -18,12 +22,36 @@ func _physics_process(_delta: float) -> void:
 		# That is to say, a Y value of `1.0` points downward.
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 	)
-	# When aiming the joystick diagonally, the direction vector can have a length 
-	# greater than 1.0, making the character move faster than our maximum expected
-	# speed. When that happens, we limit the vector's length to ensure the player 
-	# can't go beyond the maximum speed.
-	if direction.length() > 1.0:
-		direction = direction.normalized()
+	
+	velocity = direction.normalized() * move_speed
+	var motion = velocity * delta
+	move_and_collide(motion) 
+	
+	#move_and_slide()
+	
+func _process(delta):
+	set_move_speed_based_on_health()
+
+func set_move_speed_based_on_health():
+	move_speed_modifier = health / MAX_HEALTH
+	
+	if(move_speed_modifier < 0.5):
+		move_speed_modifier = 0.5
 		
-	velocity = (speed * direction)
-	move_and_slide()
+	move_speed = MAX_MOVE_SPEED * move_speed_modifier
+
+#OLD
+	# Add the gravity.
+	#if not is_on_floor():
+	#	velocity.y += gravity * delta
+	# Handle Jump.
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	#	velocity.y = JUMP_VELOCITY
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	#var direction = Input.get_maxis("ui_left", "ui_right")
+	#if direction:
+	#	velocity.x = direction * SPEED
+	#else:
+	#	velocity.x = move_toward(velocity.x, 0, SPEED)
+	

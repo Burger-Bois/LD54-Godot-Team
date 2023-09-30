@@ -1,16 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://cbilrdeoifom8"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_eitml"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_iog8e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ljupp"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7sw6g"]
+radius = 20.0
+height = 80.0
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(333, 158)
 motion_mode = 1
-script = ExtResource("1_eitml")
-speed = 250
+script = ExtResource("1_iog8e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ljupp")
+shape = SubResource("CapsuleShape2D_7sw6g")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
