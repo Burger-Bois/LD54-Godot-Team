@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iog8e"]
 [ext_resource type="Texture2D" uid="uid://ctn6rvjbqsj2u" path="res://assets/player.png" id="2_8ogfl"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7sw6g"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5sh1o"]
 radius = 20.0
-height = 80.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(333, 158)
@@ -15,10 +14,11 @@ motion_mode = 1
 script = ExtResource("1_iog8e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_8ogfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_7sw6g")
+shape = SubResource("CircleShape2D_5sh1o")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
