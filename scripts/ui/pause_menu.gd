@@ -1,0 +1,6 @@
+extends Control
+class_name PauseMenu
+
+
+signal continue_button_pressed
+signal main_menu_button_pressed
