@@ -14,12 +14,12 @@ speed = 200
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 3
+path_postprocessing = 1
 avoidance_enabled = true
 neighbor_distance = 20.0
 time_horizon_obstacles = 1.0
 avoidance_layers = 3
 avoidance_mask = 3
-debug_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1rnnr")
