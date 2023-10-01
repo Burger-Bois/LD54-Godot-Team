@@ -25,3 +25,7 @@ func _physics_process(delta):
 func move(velo: Vector2) -> void:
 	velocity = velo
 	move_and_slide()
+
+func _on_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		queue_free()

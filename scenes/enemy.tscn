@@ -9,6 +9,7 @@ radius = 16.0
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
+input_pickable = true
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_pfhrn")
@@ -30,3 +31,5 @@ avoidance_mask = 3
 shape = SubResource("CircleShape2D_1rnnr")
 debug_color = Color(0.960784, 0.176471, 0.207843, 0.419608)
 metadata/_edit_lock_ = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
