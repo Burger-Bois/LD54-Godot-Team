@@ -18,19 +18,32 @@ var pause_scene: PackedScene
 var game_over_scene: PackedScene
 
 @export
+var flash_message_scene: PackedScene
+
+@export
 var ui_canvas_layer: CanvasLayer
+
+@export
+var overlay_canvas_layer: CanvasLayer
 
 var _main_menu: MainMenu
 var _credits: Credits
 var _level: Level
 var _pause_menu: PauseMenu
 var _game_over: GameOver
+var _flash_message: FlashMessage
 
 var _playing := false
 
 
 func _ready():
 	load_main_menu()
+	
+	var flash_message := flash_message_scene.instantiate() as FlashMessage
+	flash_message.hide()
+	
+	_flash_message = flash_message
+	overlay_canvas_layer.add_child(flash_message)
 
 
 func _process(_delta: float):
@@ -72,6 +85,7 @@ func load_level():
 	# Level
 	var level := level_scene.instantiate() as Level
 	level.game_over.connect(show_game_over)
+	level.wave_spawning.connect(flash_wave_message)
 	
 	_level = level
 	add_child(_level)
@@ -117,6 +131,11 @@ func show_game_over():
 	if is_instance_valid(_game_over):
 		_game_over.score = _level.wave
 		_game_over.show()
+
+
+func flash_wave_message():
+	_flash_message.text = "Wave " + str(_level.wave)
+	_flash_message.play()
 
 
 func _unload_all():

@@ -3,6 +3,7 @@ class_name Level
 
 
 signal game_over
+signal wave_spawning
 
 const ENEMIES_GROUP := "enemies"
 
@@ -66,3 +67,5 @@ func spawn_wave():
 		enemy.tree_exited.connect(enemy_killed)
 		enemy.target = player
 		add_child(enemy)
+	
+	wave_spawning.emit()
