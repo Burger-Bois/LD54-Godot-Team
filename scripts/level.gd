@@ -16,7 +16,7 @@ var player := $Player as Player
 @export_range(0, 0, 1, "or_greater")
 var wave_delay := 5.0
 
-var _wave := 0
+var wave := 0
 
 
 func _ready():
@@ -43,8 +43,8 @@ func start_wave_timer():
 
 
 func spawn_wave():
-	_wave += 1
-	var enemy_count := _ENEMY_COUNT_BASE + _ENEMY_COUNT_INCREMENT * (_wave - 1)
+	wave += 1
+	var enemy_count := _ENEMY_COUNT_BASE + _ENEMY_COUNT_INCREMENT * (wave - 1)
 	
 	for i in range(enemy_count):
 		var enemy = enemy_spawner.get_mob() as Enemy
