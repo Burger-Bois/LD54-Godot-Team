@@ -19,7 +19,7 @@ var is_aiming := false
 
 var mouse_position:Vector2
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction := Vector2(
 		# This first line calculates the X direction, the vector's first component.
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
@@ -45,7 +45,7 @@ func handle_player_rotation(delta):
 	rotation += rotation_direction * _max_rotation_speed * delta
 	
 func modify_move_speed():
-	cripple_speed_modifier = health / _max_health
+	cripple_speed_modifier = float(health) / _max_health
 	
 	if cripple_speed_modifier < 0.5 :
 		cripple_speed_modifier = 0.5

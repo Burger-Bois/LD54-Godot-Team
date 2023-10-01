@@ -29,7 +29,7 @@ func _ready():
 	load_main_menu()
 
 
-func _process(delta: float):
+func _process(_delta: float):
 	if _playing and Input.is_action_just_pressed("pause"):
 			if get_tree().paused:
 				unpause()
