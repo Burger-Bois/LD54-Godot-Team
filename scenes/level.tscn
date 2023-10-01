@@ -1,12 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://coqgvdkqrbi4x"]
+[gd_scene load_steps=15 format=3 uid="uid://bnvn6olu52jd8"]
 
-[ext_resource type="Script" path="res://scenes/level.gd" id="1_26b68"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_iqx1k"]
 [ext_resource type="Texture2D" uid="uid://cbyb6qadtydrw" path="res://assets/water.png" id="1_x14sm"]
 [ext_resource type="Texture2D" uid="uid://dmuw3g0713wa0" path="res://assets/island.png" id="2_a3ue1"]
 [ext_resource type="Texture2D" uid="uid://6vqlb61b2kvx" path="res://assets/wall.png" id="3_3dy2v"]
-[ext_resource type="PackedScene" uid="uid://cvktgouiehfv2" path="res://scenes/player.tscn" id="4_b6cyb"]
+[ext_resource type="PackedScene" uid="uid://hvj3d41rvuub" path="res://scenes/player.tscn" id="4_b6cyb"]
 [ext_resource type="PackedScene" uid="uid://bb6fupav162eu" path="res://scenes/enemy.tscn" id="4_bv5dq"]
-[ext_resource type="PackedScene" path="res://scenes/enemy_spawner.tscn" id="6_owjf4"]
+[ext_resource type="PackedScene" uid="uid://qylfmg2m6v0o" path="res://scenes/spawner_path.tscn" id="6_dvq5o"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gmi7p"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -65,7 +65,7 @@ sources/2 = SubResource("TileSetAtlasSource_1rjhd")
 
 [node name="Level" type="Node2D"]
 process_mode = 1
-script = ExtResource("1_26b68")
+script = ExtResource("1_iqx1k")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_58y2h")
@@ -86,5 +86,5 @@ limit_bottom = 768
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="EnemySpawner" parent="." instance=ExtResource("6_owjf4")]
+[node name="EnemySpawner" parent="." instance=ExtResource("6_dvq5o")]
 enemy_scene = ExtResource("4_bv5dq")
