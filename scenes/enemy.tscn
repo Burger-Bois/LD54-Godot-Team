@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb6fupav162eu"]
+[gd_scene load_steps=7 format=3 uid="uid://bb6fupav162eu"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_pfhrn"]
 [ext_resource type="Texture2D" uid="uid://brwi3us1gqdw2" path="res://assets/enemy.png" id="2_cbp7d"]
+[ext_resource type="AudioStream" uid="uid://dhdglb7ryk61b" path="res://assets/sfx/enemy_death.wav" id="3_rgo32"]
+[ext_resource type="AudioStream" uid="uid://bfxm8u15bytqm" path="res://assets/sfx/enemy_hit.wav" id="4_mc2ja"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1rnnr"]
 radius = 16.0
@@ -41,5 +43,13 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_1wrv4")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+stream = ExtResource("3_rgo32")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+stream = ExtResource("4_mc2ja")
 
 [connection signal="area_entered" from="Hitbox" to="." method="hit_by"]

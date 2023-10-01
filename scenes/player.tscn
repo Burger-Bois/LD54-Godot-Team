@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://hvj3d41rvuub"]
+[gd_scene load_steps=6 format=3 uid="uid://hvj3d41rvuub"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iog8e"]
 [ext_resource type="Texture2D" uid="uid://ctn6rvjbqsj2u" path="res://assets/player.png" id="2_8ogfl"]
 [ext_resource type="PackedScene" uid="uid://dryjo6hevh3vg" path="res://scenes/bullet.tscn" id="2_ndr1c"]
+[ext_resource type="AudioStream" uid="uid://qcg2h3pmp2ti" path="res://assets/sfx/shoot.wav" id="4_r7r87"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5sh1o"]
 radius = 20.0
@@ -24,3 +25,6 @@ metadata/_edit_lock_ = true
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(20, 0)
+
+[node name="FireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r7r87")

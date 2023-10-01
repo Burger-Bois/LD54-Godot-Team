@@ -8,6 +8,7 @@ class_name Player
 @export var bullet_scene : PackedScene
 
 @onready var muzzle := $Muzzle as Marker2D
+@onready var fire_sound := $FireSound as AudioStreamPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -72,6 +73,8 @@ func try_fire():
 			b.direction = Vector2.RIGHT.rotated(rotation)
 			b.global_position = muzzle.global_position
 			add_sibling(b)
+			
+			fire_sound.play()
 			
 			_can_fire = false
 			_fire_cooldown_timer.start()

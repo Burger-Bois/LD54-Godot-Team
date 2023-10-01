@@ -22,6 +22,11 @@ var _daze_timer: Timer
 var _alive := true
 var _dazed := false
 
+@onready var hit_sound := $HitSound as AudioStreamPlayer
+
+@onready var death_sound := $DeathSound as AudioStreamPlayer
+var _death_sound_timer: Timer
+
 func _ready() -> void:
 	nav.connect("velocity_computed", move)
 	
@@ -36,6 +41,12 @@ func _ready() -> void:
 	_daze_timer = daze_timer
 	add_child(_daze_timer)
 	
+	_death_sound_timer = Timer.new()
+	_death_sound_timer.name = "DeathSoundTimer"
+	_death_sound_timer.one_shot = true
+	_death_sound_timer.timeout.connect(queue_free)
+	_death_sound_timer.process_mode = PROCESS_MODE_PAUSABLE
+	add_child(_death_sound_timer)
 
 func _physics_process(delta):
 	if _dazed:
@@ -73,10 +84,20 @@ func hit_by(area: Area2D):
 	area.hit()
 	
 	# Kill
-	if health <= 0:
+	if health > 0:
+		hit_sound.play()
+	else:
 		_alive = false
 		killed.emit()
-		queue_free()
+		
+		death_sound.play()
+		
+		_death_sound_timer.wait_time = death_sound.stream.get_length()
+		_death_sound_timer.start()
+		
+		hide()
+		call_deferred("set_process_mode", PROCESS_MODE_DISABLED)
+		death_sound.call_deferred("set_process_mode", PROCESS_MODE_PAUSABLE)
 
 func is_alive():
 	return _alive
