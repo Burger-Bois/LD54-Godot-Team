@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b03g6e75d2le5"]
+[gd_scene load_steps=2 format=3 uid="uid://dfko66dt2pua3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08nkb"]
 
-[node name="obsticle" type="Area2D"]
+[node name="Obsticle" type="Area2D"]
 position = Vector2(348, 128)
 collision_layer = 3
 collision_mask = 3

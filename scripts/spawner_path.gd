@@ -1,12 +1,12 @@
 extends Path2D
-class_name EnemySpawner
+class_name SpawnerPath
 
 
 @export
 var enemy_scene: PackedScene
 
 @onready
-var spawn_location := $EnemySpawnLocation as PathFollow2D
+var spawn_location := $SpawnLocation as PathFollow2D
 
 
 func get_mob() -> CharacterBody2D:

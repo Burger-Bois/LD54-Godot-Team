@@ -8,9 +8,9 @@ _data = {
 }
 point_count = 5
 
-[node name="EnemySpawner" type="Path2D"]
+[node name="SpawnerPath" type="Path2D"]
 curve = SubResource("Curve2D_a030w")
 script = ExtResource("1_a2fxr")
 
-[node name="EnemySpawnLocation" type="PathFollow2D" parent="."]
+[node name="SpawnLocation" type="PathFollow2D" parent="."]
 position = Vector2(-64, -64)
