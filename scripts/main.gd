@@ -115,6 +115,7 @@ func unpause():
 func show_game_over():
 	_playing = false
 	if is_instance_valid(_game_over):
+		_game_over.score = _level.wave
 		_game_over.show()
 
 

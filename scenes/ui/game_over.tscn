@@ -52,6 +52,20 @@ theme_override_font_sizes/font_size = 28
 text = "Game Over"
 horizontal_alignment = 1
 
+[node name="ScoreRow" type="HBoxContainer" parent="Rows"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScoreMessage" type="Label" parent="Rows/ScoreRow"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "You made it to wave"
+
+[node name="Score" type="Label" parent="Rows/ScoreRow"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "0"
+
 [node name="RestartButton" type="Button" parent="Rows"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
