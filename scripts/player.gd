@@ -16,11 +16,16 @@ var move_speed: float = 0
 var cripple_speed_modifier: float = 1
 var aim_speed_modifier: float = 1
 var health = _max_health
-var is_aiming := false
+var _aiming := false
+var _alive := true
 
 @export var fire_cooldown := 0.5
 var _fire_cooldown_timer: Timer
 var _can_fire := true
+
+@export var damage_cooldown := 0.5
+var _damage_cooldown_timer: Timer
+var _can_take_damage := true
 
 var mouse_position:Vector2
 
@@ -31,24 +36,33 @@ func _ready():
 	_fire_cooldown_timer.one_shot = true
 	_fire_cooldown_timer.timeout.connect(func(): _can_fire = true)
 	add_child(_fire_cooldown_timer)
+	
+	_damage_cooldown_timer = Timer.new()
+	_damage_cooldown_timer.name = "DamageCooldownTimer"
+	_damage_cooldown_timer.wait_time = damage_cooldown
+	_damage_cooldown_timer.one_shot = true
+	_damage_cooldown_timer.timeout.connect(func(): _can_take_damage = true)
+	add_child(_damage_cooldown_timer)
 
 func _physics_process(_delta):
-	var direction := Vector2(
-		# This first line calculates the X direction, the vector's first component.
-		Input.get_action_strength("right") - Input.get_action_strength("left"),
-		# And here, we calculate the Y direction. Note that the Y-axis points 
-		# DOWN in games. That is to say, a Y value of `1.0` points downward.
-		Input.get_action_strength("down") - Input.get_action_strength("up")
-	)
-	velocity = direction.normalized() * move_speed
-	#move_and_collide(motion)
-	move_and_slide()
+	if _alive:
+		var direction := Vector2(
+			# This first line calculates the X direction, the vector's first component.
+			Input.get_action_strength("right") - Input.get_action_strength("left"),
+			# And here, we calculate the Y direction. Note that the Y-axis points 
+			# DOWN in games. That is to say, a Y value of `1.0` points downward.
+			Input.get_action_strength("down") - Input.get_action_strength("up")
+		)
+		velocity = direction.normalized() * move_speed
+		#move_and_collide(motion)
+		move_and_slide()
 	
 func _process(delta):
-	handle_player_rotation(delta)
-	try_aim()
-	try_fire()
-	modify_move_speed()
+	if _alive:
+		handle_player_rotation(delta)
+		try_aim()
+		try_fire()
+		modify_move_speed()
 	
 func handle_player_rotation(delta):
 	##self.look_at(mouse_position) # bad, non-phsysics based rotation
@@ -68,7 +82,7 @@ func modify_move_speed():
 	
 func try_fire():	
 	if Input.is_action_pressed("fire"):
-		if is_aiming and _can_fire:
+		if _aiming and _can_fire:
 			var b := bullet_scene.instantiate() as Bullet
 			b.direction = Vector2.RIGHT.rotated(rotation)
 			b.global_position = muzzle.global_position
@@ -84,10 +98,10 @@ func try_fire():
 func try_aim():
 	# unholtser gun + aim in one action
 	if Input.is_action_pressed("aim"):
-		is_aiming = true
+		_aiming = true
 		aim_speed_modifier = 0.5
 	else :
-		is_aiming = false
+		_aiming = false
 		aim_speed_modifier = 1
 	
 #func push():
@@ -96,3 +110,20 @@ func try_aim():
 	
 #func grab(pass object):
 	# grab
+
+func hit():
+	print("player hit by enemy")
+	if not _alive:
+		return
+	
+	if _can_take_damage:
+		health += -25
+		_can_take_damage = false
+		_damage_cooldown_timer.start()
+		print("player took damage")
+	
+		# Kill
+		if health > 0:
+			pass #TODO: hit_sound.play()
+		else:
+			_alive = false
