@@ -17,8 +17,6 @@ var text: String:
 			_label.text = value
 		text = value
 
-var _playing := false
-
 
 func play():
 	_animation.play(FLASH_ANIMATION)
