@@ -7,4 +7,6 @@ var direction := Vector2.RIGHT:
 
 func _process(delta):
 	self.position += direction * speed * delta
-	
+
+func hit():
+	queue_free()

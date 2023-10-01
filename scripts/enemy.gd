@@ -30,15 +30,13 @@ func move(velo: Vector2) -> void:
 	velocity = velo
 	move_and_slide()
 
-func kill():
+func hit_by(area: Area2D):
 	if _alive:
 		_alive = false
 		killed.emit()
 		queue_free()
+		
+		area.hit()
 
 func is_alive():
 	return _alive
-
-func _on_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		kill()
