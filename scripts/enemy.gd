@@ -6,6 +6,9 @@ signal killed
 @export var target: Node2D
 @export var speed := 500
 
+@export var health_max := 3
+@export var health := 3
+
 var accel = 7
 
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
@@ -31,12 +34,16 @@ func move(velo: Vector2) -> void:
 	move_and_slide()
 
 func hit_by(area: Area2D):
-	if _alive:
+	if not _alive:
+		return
+	
+	health += -1
+	area.hit()
+	
+	if health <= 0:
 		_alive = false
 		killed.emit()
 		queue_free()
-		
-		area.hit()
 
 func is_alive():
 	return _alive
