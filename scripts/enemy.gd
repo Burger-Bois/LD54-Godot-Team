@@ -13,13 +13,14 @@ func _ready() -> void:
 	nav.connect("velocity_computed", callable)
 
 func _physics_process(delta):
-	var direction = Vector3()
-	
-	nav.target_position = target.global_position
-	
-	direction = (nav.get_next_path_position() - global_position).normalized()
-	
-	nav.velocity = velocity.lerp(direction * speed, accel* delta)
+	if NavigationServer2D.map_is_active(nav.get_navigation_map()):
+		var direction = Vector3()
+		
+		nav.target_position = target.global_position
+		
+		direction = (nav.get_next_path_position() - global_position).normalized()
+		
+		nav.velocity = velocity.lerp(direction * speed, accel* delta)
 
 func move(velo: Vector2) -> void:
 	velocity = velo
