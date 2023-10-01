@@ -1,12 +1,16 @@
 extends CharacterBody2D
 class_name Enemy
 
+signal killed
+
 @export var target: Node2D
 @export var speed := 500
 
 var accel = 7
 
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
+
+var _alive := true
 
 func _ready() -> void:
 	var callable = Callable(self, "move")
@@ -26,6 +30,15 @@ func move(velo: Vector2) -> void:
 	velocity = velo
 	move_and_slide()
 
+func kill():
+	if _alive:
+		_alive = false
+		killed.emit()
+		queue_free()
+
+func is_alive():
+	return _alive
+
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		queue_free()
+		kill()

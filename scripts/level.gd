@@ -38,10 +38,9 @@ func _process(_delta):
 
 
 func enemy_killed():
-	if get_tree():
-		var enemies := get_tree().get_nodes_in_group(ENEMIES_GROUP) as Array[Node]
-		if enemies.is_empty():
-			start_wave_timer()
+	var enemies := get_tree().get_nodes_in_group(ENEMIES_GROUP) as Array[Node]
+	if enemies.all(func(enemy): return not enemy.is_alive()):
+		start_wave_timer()
 
 
 func start_wave_timer():
@@ -64,7 +63,7 @@ func spawn_wave():
 		var enemy = enemy_spawner.get_mob() as Enemy
 		enemy.name = "Enemy" + str(i)
 		enemy.add_to_group(ENEMIES_GROUP)
-		enemy.tree_exited.connect(enemy_killed)
+		enemy.killed.connect(enemy_killed)
 		enemy.target = player
 		add_child(enemy)
 	
