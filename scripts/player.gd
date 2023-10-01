@@ -17,7 +17,19 @@ var aim_speed_modifier: float = 1
 var health = _max_health
 var is_aiming := false
 
+@export var fire_cooldown := 0.5
+var _fire_cooldown_timer: Timer
+var _can_fire := true
+
 var mouse_position:Vector2
+
+func _ready():
+	_fire_cooldown_timer = Timer.new()
+	_fire_cooldown_timer.name = "FireCooldownTimer"
+	_fire_cooldown_timer.wait_time = fire_cooldown
+	_fire_cooldown_timer.one_shot = true
+	_fire_cooldown_timer.timeout.connect(func(): _can_fire = true)
+	add_child(_fire_cooldown_timer)
 
 func _physics_process(_delta):
 	var direction := Vector2(
@@ -54,12 +66,15 @@ func modify_move_speed():
 	move_speed = _max_move_speed * cripple_speed_modifier * aim_speed_modifier
 	
 func try_fire():	
-	if Input.is_action_just_pressed("fire"):
-		if is_aiming :
+	if Input.is_action_pressed("fire"):
+		if is_aiming and _can_fire:
 			var b := bullet_scene.instantiate() as Bullet
 			b.direction = Vector2.RIGHT.rotated(rotation)
 			b.global_position = muzzle.global_position
 			add_sibling(b)
+			
+			_can_fire = false
+			_fire_cooldown_timer.start()
 		else :
 			pass # TODO implement pushing, picking up?
 
