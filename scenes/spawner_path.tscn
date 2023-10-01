@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qylfmg2m6v0o"]
 
-[ext_resource type="Script" path="res://scripts/EnemySpawner.gd" id="1_emrfq"]
+[ext_resource type="Script" path="res://scripts/spawner_path.gd" id="1_a2fxr"]
 
 [sub_resource type="Curve2D" id="Curve2D_a030w"]
 _data = {
@@ -10,7 +10,7 @@ point_count = 5
 
 [node name="EnemySpawner" type="Path2D"]
 curve = SubResource("Curve2D_a030w")
-script = ExtResource("1_emrfq")
+script = ExtResource("1_a2fxr")
 
 [node name="EnemySpawnLocation" type="PathFollow2D" parent="."]
 position = Vector2(-64, -64)
