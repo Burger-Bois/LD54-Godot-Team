@@ -1,0 +1,6 @@
+extends Control
+class_name GameOver
+
+
+signal restart_button_pressed
+signal main_menu_button_pressed

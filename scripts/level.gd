@@ -2,6 +2,8 @@ extends Node2D
 class_name Level
 
 
+signal game_over
+
 const ENEMIES_GROUP := "enemies"
 
 const _ENEMY_COUNT_BASE := 3
@@ -18,9 +20,20 @@ var wave_delay := 5.0
 
 var wave := 0
 
+var _playing := false
+
 
 func _ready():
 	spawn_wave()
+	_playing = true
+
+
+func _process(_delta):
+	# Temporary lose state. Press K.
+	if _playing and Input.is_physical_key_pressed(KEY_K):
+		_playing = false
+		process_mode = Node.PROCESS_MODE_DISABLED
+		game_over.emit()
 
 
 func enemy_killed():

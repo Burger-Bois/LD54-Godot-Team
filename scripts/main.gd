@@ -15,12 +15,16 @@ var level_scene: PackedScene
 var pause_scene: PackedScene
 
 @export
+var game_over_scene: PackedScene
+
+@export
 var ui_canvas_layer: CanvasLayer
 
 var _main_menu: MainMenu
 var _credits: Credits
-var _level: Node
+var _level: Level
 var _pause_menu: PauseMenu
+var _game_over: GameOver
 
 var _playing := false
 
@@ -65,9 +69,14 @@ func load_credits():
 func load_level():
 	_unload_all()
 	
-	_level = level_scene.instantiate()
+	# Level
+	var level := level_scene.instantiate() as Level
+	level.game_over.connect(show_game_over)
+	
+	_level = level
 	add_child(_level)
 	
+	# Pause Menu
 	var pause_menu := pause_scene.instantiate() as PauseMenu
 	pause_menu.continue_button_pressed.connect(unpause)
 	pause_menu.main_menu_button_pressed.connect(load_main_menu)
@@ -75,6 +84,15 @@ func load_level():
 	
 	_pause_menu = pause_menu
 	ui_canvas_layer.add_child(pause_menu)
+	
+	# Game Over Screen
+	var game_over := game_over_scene.instantiate() as GameOver
+	game_over.restart_button_pressed.connect(load_level)
+	game_over.main_menu_button_pressed.connect(load_main_menu)
+	game_over.hide()
+	
+	_game_over = game_over
+	ui_canvas_layer.add_child(game_over)
 	
 	_playing = true
 
@@ -94,6 +112,12 @@ func unpause():
 			_pause_menu.hide()
 
 
+func show_game_over():
+	_playing = false
+	if is_instance_valid(_game_over):
+		_game_over.show()
+
+
 func _unload_all():
 	unpause()
 	
@@ -105,3 +129,5 @@ func _unload_all():
 		_level.queue_free()
 	if is_instance_valid(_pause_menu):
 		_pause_menu.queue_free()
+	if is_instance_valid(_game_over):
+		_game_over.queue_free()
