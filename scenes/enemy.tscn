@@ -33,3 +33,4 @@ debug_color = Color(0.960784, 0.176471, 0.207843, 0.419608)
 metadata/_edit_lock_ = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="killed" from="." to="." method="check_killed"]
