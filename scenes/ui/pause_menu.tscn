@@ -44,12 +44,6 @@ alignment = 1
 
 [node name="Title" type="Label" parent="Rows"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Mounds of Flesh"
-horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="Rows"]
-layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Paused"
 horizontal_alignment = 1
