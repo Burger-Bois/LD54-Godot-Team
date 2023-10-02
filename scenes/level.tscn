@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://qylfmg2m6v0o" path="res://scenes/spawner_path.tscn" id="6_dvq5o"]
 [ext_resource type="PackedScene" uid="uid://3dv5ykimq4tw" path="res://scenes/obstacle_manager.tscn" id="9_hw2va"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_gmi7p"]
-vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v1x6a"]
+vertices = PackedVector2Array(-8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 8, -16, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 8, -16, -8)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21088"]
 texture = ExtResource("1_x14sm")
@@ -24,12 +24,12 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_1/angular_velocity = 0.0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gmi7p")
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_v1x6a")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_5a8ac"]
-vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8pyj8"]
+vertices = PackedVector2Array(-8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 8, -16, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 8, -16, -8)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5e31"]
 texture = ExtResource("2_a3ue1")
@@ -39,7 +39,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_1/angular_velocity = 0.0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5a8ac")
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_8pyj8")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vhcuo"]
 
