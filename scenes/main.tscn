@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq76cmknhfjbu"]
+[gd_scene load_steps=11 format=3 uid="uid://cq76cmknhfjbu"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_mic1g"]
 [ext_resource type="PackedScene" uid="uid://dka03cdpi5e7s" path="res://scenes/ui/main_menu.tscn" id="2_akvxq"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dpaiqr5jou8gn" path="res://scenes/ui/flash_message.tscn" id="7_u1spj"]
 [ext_resource type="PackedScene" uid="uid://ds0vrraeivklv" path="res://scenes/ui_audio_player.tscn" id="8_d8g0d"]
 [ext_resource type="AudioStream" uid="uid://dqdsewgt6r2mm" path="res://assets/music/drone.wav" id="9_2a6yo"]
+[ext_resource type="AudioStream" uid="uid://73hfbnj812xx" path="res://assets/music/Level_Track.mp3" id="10_fsnag"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("ui_canvas_layer", "overlay_canvas_layer")]
 process_mode = 3
@@ -28,7 +29,10 @@ overlay_canvas_layer = NodePath("Overlay")
 
 [node name="UIAudioPlayer" parent="." instance=ExtResource("8_d8g0d")]
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_2a6yo")
-autoplay = true
 bus = &"Music"
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_fsnag")
+volume_db = -10.4

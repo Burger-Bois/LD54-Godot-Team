@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/ui/credits.gd" id="1_ynnbl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtqlg"]
-bg_color = Color(0.247059, 0, 0, 1)
+bg_color = Color(0, 0, 0, 1)
 
 [node name="CreditsMenu" type="Control"]
 layout_mode = 3
@@ -48,11 +48,12 @@ horizontal_alignment = 1
 
 [node name="Credits" type="Label" parent="Rows"]
 layout_mode = 2
-text = "Dan
-Ewan
-John
+text = "Dan -- Ewan -- John
 
+Some assets and music by Em
+SFX: Made with ChipTone <https://sfbgames.itch.io/chiptone>
 Font: Metal Mania <https://fonts.google.com/specimen/Metal+Mania>"
+horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="Rows"]
 custom_minimum_size = Vector2(200, 0)
