@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds0vrraeivklv"]
+
+[ext_resource type="Script" path="res://scripts/ui_audio_player.gd" id="1_v0f66"]
+[ext_resource type="AudioStream" uid="uid://dxf8wvls8g7xf" path="res://assets/sfx/button_hover.wav" id="2_4stqm"]
+[ext_resource type="AudioStream" uid="uid://he1ndoibqu8u" path="res://assets/sfx/button_select.wav" id="3_nt42a"]
+
+[node name="UIAudioPlayer" type="Node"]
+script = ExtResource("1_v0f66")
+
+[node name="ButtonHoverAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4stqm")
+
+[node name="ButtonSelectAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nt42a")
