@@ -4,6 +4,7 @@ class_name ObstacleManager
 signal carrying_obstacle_changed(value: bool)
 
 const OBSTACLE_TILE_ID := 3
+const OBSTACLE_VALID_PLACEMENTS := [1]
 
 @export var tilemap: TileMap
 @export var interactableArea: PackedScene
@@ -21,7 +22,7 @@ func _process(_delta):
 		var clicked_tile_coords := tilemap.local_to_map(get_local_mouse_position())
 		var clicked_tile_id := tilemap.get_cell_source_id(0, clicked_tile_coords)
 		
-		if carrying_obstacle:
+		if carrying_obstacle and OBSTACLE_VALID_PLACEMENTS.has(clicked_tile_id):
 			set_and_save_tile(clicked_tile_coords, OBSTACLE_TILE_ID, clicked_tile_id)
 			carrying_obstacle = false
 		
@@ -61,3 +62,4 @@ func interact_with_tile(area: InteractableArea):
 		if n.position == cellposition:
 			set_tile(n.position, n.ID)
 			area.delete_self()
+			_obstacle_area_map.erase(_obstacle_area_map.find_key(area))
