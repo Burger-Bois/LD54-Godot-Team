@@ -27,6 +27,9 @@ var _dazed := false
 @onready var death_sound := $DeathSound as AudioStreamPlayer
 var _death_sound_timer: Timer
 
+@onready var tilemap = get_node("../TileMap") as TileMap
+@onready var obs_manager = get_node("../ObstacleManager") as ObstacleManager
+
 func _ready() -> void:
 	nav.connect("velocity_computed", move)
 	
@@ -99,8 +102,6 @@ func hit_by(area: Area2D):
 		call_deferred("set_process_mode", PROCESS_MODE_DISABLED)
 		death_sound.call_deferred("set_process_mode", PROCESS_MODE_PAUSABLE)
 		
-		var tilemap = get_node("../TileMap") as TileMap
-		var obs_manager = get_node("../ObstacleManager") as ObstacleManager
 		var deathcellposition = tilemap.local_to_map(position)
 		obs_manager.set_and_save_tile(deathcellposition, 3, tilemap.get_cell_source_id(0, deathcellposition))
 
