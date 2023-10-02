@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cbyb6qadtydrw" path="res://assets/water.png" id="1_x14sm"]
 [ext_resource type="PackedScene" uid="uid://hvj3d41rvuub" path="res://scenes/player.tscn" id="4_b6cyb"]
 [ext_resource type="PackedScene" uid="uid://bb6fupav162eu" path="res://scenes/enemy.tscn" id="4_bv5dq"]
-[ext_resource type="Texture2D" uid="uid://du6bfbxhschlc" path="res://assets/obstacletesttile.png" id="5_445wj"]
+[ext_resource type="Texture2D" uid="uid://bpuh7m0jtapvx" path="res://assets/flesh_mound.png" id="4_wo876"]
 [ext_resource type="PackedScene" uid="uid://qylfmg2m6v0o" path="res://scenes/spawner_path.tscn" id="6_dvq5o"]
 [ext_resource type="Texture2D" uid="uid://bv26omrl2dyvy" path="res://assets/walls_and_floors.png" id="6_y6i5r"]
 [ext_resource type="PackedScene" uid="uid://3dv5ykimq4tw" path="res://scenes/obstacle_manager.tscn" id="9_hw2va"]
@@ -274,7 +274,7 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hx471"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iqv6c"]
-texture = ExtResource("5_445wj")
+texture = ExtResource("4_wo876")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hx471")
