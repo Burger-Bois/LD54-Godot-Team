@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dms6ndp0t6x63"]
+
+[ext_resource type="Script" path="res://scripts/interactable_area.gd" id="1_j0h5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ldnmo"]
+radius = 35.0
+
+[node name="InteractableArea" type="Area2D"]
+collision_layer = 32
+collision_mask = 33
+script = ExtResource("1_j0h5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ldnmo")
+debug_color = Color(0.815686, 0.290196, 0.717647, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
