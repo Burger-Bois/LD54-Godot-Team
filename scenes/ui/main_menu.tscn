@@ -61,6 +61,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Credits"
 
+[node name="Controls" type="Label" parent="Rows"]
+layout_mode = 2
+text = "MOVE -------------------- WASD
+AIM --------------- RIGHT CLICK
+SHOOT ------------- LEFT CLICK
+PICK UP BODY ---------------- E
+PAUSE --------------------- ESC"
+horizontal_alignment = 1
+
 [node name="TitleImage" type="TextureRect" parent="."]
 modulate = Color(1, 0.490196, 0.501961, 1)
 layout_mode = 2
