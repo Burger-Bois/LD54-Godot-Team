@@ -54,7 +54,10 @@ func interact_with_tile(area: InteractableArea):
 		return 
 	else:
 		carrying_obstacle = true
-	
+		
+	obliterate_tile(area)
+
+func obliterate_tile(area: InteractableArea):
 	##set tile at pos to old tile
 	var cellposition = tilemap.local_to_map(area.global_position)
 	

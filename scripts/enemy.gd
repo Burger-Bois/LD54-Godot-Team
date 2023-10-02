@@ -30,6 +30,8 @@ var _death_sound_timer: Timer
 @onready var tilemap = get_node("../TileMap") as TileMap
 @onready var obs_manager = get_node("../ObstacleManager") as ObstacleManager
 
+var box_obliterator_mode:= false
+
 func _ready() -> void:
 	nav.connect("velocity_computed", move)
 	
@@ -62,6 +64,11 @@ func _physics_process(delta):
 		direction = (nav.get_next_path_position() - global_position).normalized()
 		
 		nav.velocity = velocity.lerp(direction * speed, accel* delta)
+		
+		if not nav.is_target_reachable():
+			box_obliterator_mode = true
+		else:
+			box_obliterator_mode = false
 
 func move(velo: Vector2) -> void:
 	velocity = velo
