@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://hvj3d41rvuub"]
+[gd_scene load_steps=33 format=3 uid="uid://hvj3d41rvuub"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iog8e"]
 [ext_resource type="PackedScene" uid="uid://dryjo6hevh3vg" path="res://scenes/bullet.tscn" id="2_ndr1c"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dikgain4g7b0o" path="res://assets/sprites/player_walk.png" id="6_4benp"]
 [ext_resource type="Texture2D" uid="uid://d1yf4kh1g3m04" path="res://assets/LightSprite.png" id="6_5r6jh"]
 [ext_resource type="AudioStream" uid="uid://baarih8qtmw3q" path="res://assets/sfx/player_hit.wav" id="7_g08mi"]
+[ext_resource type="Texture2D" uid="uid://bpuh7m0jtapvx" path="res://assets/flesh_mound.png" id="11_hbo6g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_55ue6"]
 atlas = ExtResource("4_ybkqb")
@@ -233,5 +234,12 @@ texture = ExtResource("6_5r6jh")
 stream = ExtResource("7_g08mi")
 volume_db = -5.778
 bus = &"SFX"
+
+[node name="FleshMound" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-16, -14)
+rotation = -0.836054
+scale = Vector2(0.681139, 0.681139)
+texture = ExtResource("11_hbo6g")
 
 [connection signal="body_entered" from="Hitbox" to="." method="hit"]

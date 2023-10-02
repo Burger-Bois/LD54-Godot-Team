@@ -23,6 +23,7 @@ signal interacted(player: Player, pos: Vector2)
 @onready var hitbox := $Hitbox as Area2D
 @onready var laser := $Muzzle/Laser as Laser
 @onready var sprite := $AnimatedSprite2D as AnimatedSprite2D
+@onready var flesh_mound := $FleshMound as Sprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -43,7 +44,13 @@ var _knockback_direction: Vector2
 var _invincible_timer: Timer
 var _invincible := false
 
-var _carrying := false
+var _carrying := false:
+	set(value):
+		if value:
+			flesh_mound.show()
+		else:
+			flesh_mound.hide()
+		_carrying = value
 
 var mouse_position:Vector2
 
