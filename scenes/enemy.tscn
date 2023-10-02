@@ -12,6 +12,7 @@ radius = 16.0
 radius = 16.0
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.9, 0.9)
 collision_layer = 2
 collision_mask = 3
 input_pickable = true
