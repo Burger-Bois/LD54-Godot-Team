@@ -22,6 +22,7 @@ signal interacted(player: Player, pos: Vector2)
 @onready var hit_sound := $HitSound as AudioStreamPlayer
 @onready var hitbox := $Hitbox as Area2D
 @onready var laser := $Muzzle/Laser as Laser
+@onready var sprite := $AnimatedSprite2D as AnimatedSprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -71,12 +72,22 @@ func _ready():
 func _physics_process(_delta):
 	if _dazed:
 		velocity = _knockback_direction * knockback_speed
+		if sprite.animation != "idle":
+			sprite.animation = "idle"
+			sprite.stop()
 	else:
 		var direction := Vector2(
 			Input.get_action_strength("right") - Input.get_action_strength("left"),
 			Input.get_action_strength("down") - Input.get_action_strength("up")
 		)
 		velocity = direction.normalized() * move_speed
+		
+		if velocity.length() > 0 and sprite.animation != "walk" and not is_aiming:
+			sprite.animation = "walk"
+			sprite.play()
+		elif velocity.length() <= 0 and sprite.animation != "idle" and not is_aiming:
+			sprite.animation = "idle"
+			sprite.stop()
 	
 	move_and_slide()
 
@@ -130,6 +141,11 @@ func try_aim():
 	# unholtser gun + aim in one action
 	if Input.is_action_pressed("aim"):
 		is_aiming = true
+		
+		if Input.is_action_just_pressed("aim"):
+			sprite.animation = "aim"
+			sprite.play()
+		
 		aim_speed_modifier = 0.5
 	else :
 		is_aiming = false
