@@ -19,6 +19,7 @@ signal interacted(player: Player, pos: Vector2)
 @onready var muzzle := $Muzzle as Marker2D
 @onready var fire_sound := $FireSound as AudioStreamPlayer
 @onready var death_sound := $DeathSound as AudioStreamPlayer
+@onready var hit_sound := $HitSound as AudioStreamPlayer
 @onready var hitbox := $Hitbox as Area2D
 @onready var laser := $Muzzle/Laser as Laser
 
@@ -154,6 +155,8 @@ func hit(node_hit_by: Node2D):
 	
 	if health <= 0:
 		die()
+	else:
+		hit_sound.play()
 
 func die():
 	killed.emit()

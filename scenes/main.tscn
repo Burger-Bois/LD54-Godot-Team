@@ -35,4 +35,5 @@ bus = &"Music"
 
 [node name="LevelMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_fsnag")
-volume_db = -10.4
+volume_db = -12.711
+bus = &"Music"
