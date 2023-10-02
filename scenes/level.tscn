@@ -105,3 +105,5 @@ enemy_scene = ExtResource("4_bv5dq")
 
 [node name="ObstacleManager" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("9_hw2va")]
 tilemap = NodePath("../TileMap")
+
+[connection signal="killed" from="Player" to="." method="finish_game"]
