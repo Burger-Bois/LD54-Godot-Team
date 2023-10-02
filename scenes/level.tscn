@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bnvn6olu52jd8"]
+[gd_scene load_steps=18 format=3 uid="uid://bnvn6olu52jd8"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_iqx1k"]
 [ext_resource type="Texture2D" uid="uid://cbyb6qadtydrw" path="res://assets/water.png" id="1_x14sm"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bb6fupav162eu" path="res://scenes/enemy.tscn" id="4_bv5dq"]
 [ext_resource type="Texture2D" uid="uid://du6bfbxhschlc" path="res://assets/obstacletesttile.png" id="5_445wj"]
 [ext_resource type="PackedScene" uid="uid://qylfmg2m6v0o" path="res://scenes/spawner_path.tscn" id="6_dvq5o"]
+[ext_resource type="PackedScene" uid="uid://3dv5ykimq4tw" path="res://scenes/obstacle_manager.tscn" id="9_hw2va"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gmi7p"]
 vertices = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -101,3 +102,6 @@ position_smoothing_speed = 10.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_dvq5o")]
 enemy_scene = ExtResource("4_bv5dq")
+
+[node name="ObstacleManager" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("9_hw2va")]
+tilemap = NodePath("../TileMap")

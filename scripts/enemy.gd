@@ -100,8 +100,9 @@ func hit_by(area: Area2D):
 		death_sound.call_deferred("set_process_mode", PROCESS_MODE_PAUSABLE)
 		
 		var tilemap = get_node("../TileMap") as TileMap
-		var deathcell = tilemap.local_to_map(position)
-		tilemap.set_cell(0, deathcell, 3, Vector2i(0,0))
+		var obs_manager = get_node("../ObstacleManager") as ObstacleManager
+		var deathcellposition = tilemap.local_to_map(position)
+		obs_manager.set_tile(deathcellposition, 3, tilemap.get_cell_source_id(0, deathcellposition))
 
 func is_alive():
 	return _alive
