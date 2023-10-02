@@ -3,8 +3,8 @@ class_name ObstacleManager
 
 signal carrying_obstacle_changed(value: bool)
 
-const OBSTACLE_TILE_ID := 3
-const OBSTACLE_VALID_PLACEMENTS := [1]
+const OBSTACLE_TILE_ID := 4
+const OBSTACLE_VALID_PLACEMENTS := [5]
 
 @export var tilemap: TileMap
 @export var interactableArea: PackedScene
@@ -38,9 +38,11 @@ func interact_with_position(player: Player, global_pos: Vector2):
 ##set tile method that takes in the position and what the tile was
 #save that to an array of tile datas
 func set_and_save_tile(pos: Vector2i, new_tile_ID: int, old_tile_ID: int):
-	set_tile(pos, new_tile_ID)
+	var atlas_coordinates := tilemap.get_cell_atlas_coords(0, pos)
 	
-	var savedtile = SavedTileData.new(pos, old_tile_ID)
+	set_tile(pos, new_tile_ID, Vector2i(0, 0))
+	
+	var savedtile = SavedTileData.new(pos, old_tile_ID, atlas_coordinates)
 	saved_tiles_array.push_back(savedtile)
 	
 	var new_area = interactableArea.instantiate() as InteractableArea
@@ -49,8 +51,8 @@ func set_and_save_tile(pos: Vector2i, new_tile_ID: int, old_tile_ID: int):
 	_obstacle_area_map[pos] = new_area
 	call_deferred("add_child", new_area)
 	
-func set_tile(pos: Vector2i, new_tile_ID: int):
-	tilemap.set_cell(0, pos, new_tile_ID, Vector2i(0,0))
+func set_tile(pos: Vector2i, new_tile_ID: int, atlas_coordinates: Vector2i):
+	tilemap.set_cell(0, pos, new_tile_ID, atlas_coordinates)
 
 ##restoresavedtile method that takes in position and returns the tile to its original form
 func interact_with_tile(area: InteractableArea):
@@ -67,6 +69,6 @@ func obliterate_tile(area: InteractableArea):
 	
 	for n in saved_tiles_array:
 		if n.position == cellposition:
-			set_tile(n.position, n.ID)
+			set_tile(n.position, n.ID, n.atlas_coords)
 			area.delete_self()
 			_obstacle_area_map.erase(_obstacle_area_map.find_key(area))
