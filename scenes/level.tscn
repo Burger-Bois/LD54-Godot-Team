@@ -107,3 +107,4 @@ enemy_scene = ExtResource("4_bv5dq")
 tilemap = NodePath("../TileMap")
 
 [connection signal="killed" from="Player" to="." method="finish_game"]
+[connection signal="carrying_obstacle_changed" from="ObstacleManager" to="Player" method="set_carrying"]
