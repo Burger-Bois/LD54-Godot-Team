@@ -69,6 +69,8 @@ func _physics_process(delta):
 			box_obliterator_mode = true
 		else:
 			box_obliterator_mode = false
+		
+		rotation = direction.angle()
 
 func move(velo: Vector2) -> void:
 	velocity = velo
