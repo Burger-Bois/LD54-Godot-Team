@@ -29,14 +29,6 @@ func _ready():
 	_playing = true
 
 
-func _process(_delta):
-	# Temporary lose state. Press K.
-	if _playing and Input.is_physical_key_pressed(KEY_K):
-		_playing = false
-		process_mode = Node.PROCESS_MODE_DISABLED
-		game_over.emit()
-
-
 func enemy_killed():
 	var enemies := get_tree().get_nodes_in_group(ENEMIES_GROUP) as Array[Node]
 	if enemies.all(func(enemy): return not enemy.is_alive()):
@@ -68,3 +60,10 @@ func spawn_wave():
 		add_child(enemy)
 	
 	wave_spawning.emit()
+
+
+func finish_game():
+	if _playing:
+		_playing = false
+		call_deferred("set_process_mode", PROCESS_MODE_DISABLED)
+		game_over.emit()

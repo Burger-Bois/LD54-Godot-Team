@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal killed
+
 # consts / exposed vars
 @export var _max_move_speed = 150.0
 @export var _max_health = 100
@@ -9,6 +11,7 @@ class_name Player
 
 @onready var muzzle := $Muzzle as Marker2D
 @onready var fire_sound := $FireSound as AudioStreamPlayer
+@onready var death_sound := $DeathSound as AudioStreamPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -89,10 +92,8 @@ func try_aim():
 	else :
 		is_aiming = false
 		aim_speed_modifier = 1
-	
-#func push():
-	# push enemies back, 
-	# if you push too much, get tired for a few seconds
-	
-#func grab(pass object):
-	# grab
+
+func kill():
+	killed.emit()
+	death_sound.play()
+	call_deferred("set_process_mode", PROCESS_MODE_DISABLED)
