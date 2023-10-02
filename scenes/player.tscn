@@ -48,4 +48,4 @@ process_mode = 1
 stream = ExtResource("5_kwf2b")
 bus = &"SFX"
 
-[connection signal="body_entered" from="Hitbox" to="." method="kill" unbinds=1]
+[connection signal="body_entered" from="Hitbox" to="." method="hit"]
