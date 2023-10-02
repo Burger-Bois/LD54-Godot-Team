@@ -18,6 +18,7 @@ signal killed
 @onready var muzzle := $Muzzle as Marker2D
 @onready var fire_sound := $FireSound as AudioStreamPlayer
 @onready var death_sound := $DeathSound as AudioStreamPlayer
+@onready var hitbox := $Hitbox as Area2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -61,7 +62,7 @@ func _ready():
 	_invincible_timer.name = "InvincibilityTimer"
 	_invincible_timer.wait_time = invincibility_duration
 	_invincible_timer.one_shot = true
-	_invincible_timer.timeout.connect(func(): _invincible = false)
+	_invincible_timer.timeout.connect(end_invincibility)
 	add_child(_invincible_timer)
 
 func _physics_process(_delta):
@@ -146,6 +147,11 @@ func die():
 	killed.emit()
 	death_sound.play()
 	call_deferred("set_process_mode", PROCESS_MODE_DISABLED)
+
+func end_invincibility():
+	_invincible = false
+	if hitbox.has_overlapping_bodies():
+		hit(hitbox.get_overlapping_bodies()[0])
 
 func set_carrying(value: bool):
 	_carrying = value
