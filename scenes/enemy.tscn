@@ -19,7 +19,7 @@ input_pickable = true
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_pfhrn")
-speed = 200
+speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cbp7d")
@@ -30,6 +30,7 @@ path_postprocessing = 1
 avoidance_enabled = true
 neighbor_distance = 20.0
 time_horizon_obstacles = 1.0
+max_speed = 500.0
 avoidance_layers = 3
 avoidance_mask = 3
 
@@ -48,11 +49,9 @@ shape = SubResource("CircleShape2D_1wrv4")
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 process_mode = 1
 stream = ExtResource("3_rgo32")
-bus = &"SFX"
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 process_mode = 1
 stream = ExtResource("4_mc2ja")
-bus = &"SFX"
 
 [connection signal="area_entered" from="Hitbox" to="." method="hit_by"]

@@ -57,6 +57,8 @@ func spawn_wave():
 		enemy.add_to_group(ENEMIES_GROUP)
 		enemy.killed.connect(enemy_killed)
 		enemy.target = player
+		enemy.speed += (wave * 3)
+		enemy.health = randi_range(1, (wave / 3))
 		add_child(enemy)
 	
 	wave_spawning.emit()
