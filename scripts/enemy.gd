@@ -98,6 +98,10 @@ func hit_by(area: Area2D):
 		hide()
 		call_deferred("set_process_mode", PROCESS_MODE_DISABLED)
 		death_sound.call_deferred("set_process_mode", PROCESS_MODE_PAUSABLE)
+		
+		var tilemap = get_node("../TileMap") as TileMap
+		var deathcell = tilemap.local_to_map(position)
+		tilemap.set_cell(0, deathcell, 3, Vector2i(0,0))
 
 func is_alive():
 	return _alive

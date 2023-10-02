@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bnvn6olu52jd8"]
+[gd_scene load_steps=17 format=3 uid="uid://bnvn6olu52jd8"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_iqx1k"]
 [ext_resource type="Texture2D" uid="uid://cbyb6qadtydrw" path="res://assets/water.png" id="1_x14sm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://6vqlb61b2kvx" path="res://assets/wall.png" id="3_3dy2v"]
 [ext_resource type="PackedScene" uid="uid://hvj3d41rvuub" path="res://scenes/player.tscn" id="4_b6cyb"]
 [ext_resource type="PackedScene" uid="uid://bb6fupav162eu" path="res://scenes/enemy.tscn" id="4_bv5dq"]
+[ext_resource type="Texture2D" uid="uid://du6bfbxhschlc" path="res://assets/obstacletesttile.png" id="5_445wj"]
 [ext_resource type="PackedScene" uid="uid://qylfmg2m6v0o" path="res://scenes/spawner_path.tscn" id="6_dvq5o"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gmi7p"]
@@ -53,6 +54,17 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_vhcuo")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_agyra"]
+texture = ExtResource("5_445wj")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_1/angular_velocity = 0.0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
 [sub_resource type="TileSet" id="TileSet_58y2h"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 4
@@ -62,6 +74,7 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_21088")
 sources/1 = SubResource("TileSetAtlasSource_o5e31")
 sources/2 = SubResource("TileSetAtlasSource_1rjhd")
+sources/3 = SubResource("TileSetAtlasSource_agyra")
 
 [node name="Level" type="Node2D"]
 process_mode = 1
