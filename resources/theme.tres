@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://dfbjrxbf4lkxs"]
 
 [ext_resource type="FontFile" uid="uid://gi7psmu36mx4" path="res://assets/fonts/MetalMania-Regular.ttf" id="1_befx0"]
-[ext_resource type="StyleBox" uid="uid://bhdkxqplc5qxo" path="res://resources/button_texture.tres" id="1_fa7ct"]
+[ext_resource type="StyleBox" path="res://resources/button_texture.tres" id="1_fa7ct"]
 
 [resource]
 default_font = ExtResource("1_befx0")

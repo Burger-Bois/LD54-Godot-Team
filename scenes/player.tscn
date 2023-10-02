@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jxxmg3vod2yd"]
+[gd_scene load_steps=11 format=3 uid="uid://hvj3d41rvuub"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iog8e"]
 [ext_resource type="Texture2D" uid="uid://ctn6rvjbqsj2u" path="res://assets/player.png" id="2_8ogfl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/laser.gd" id="4_r03pl"]
 [ext_resource type="AudioStream" uid="uid://qcg2h3pmp2ti" path="res://assets/sfx/shoot.wav" id="4_r7r87"]
 [ext_resource type="AudioStream" uid="uid://boj4cuk4xydqi" path="res://assets/sfx/player_death.wav" id="5_kwf2b"]
+[ext_resource type="Texture2D" uid="uid://d1yf4kh1g3m04" path="res://assets/LightSprite.png" id="6_5r6jh"]
 [ext_resource type="AudioStream" uid="uid://baarih8qtmw3q" path="res://assets/sfx/player_hit.wav" id="7_g08mi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_thv8j"]
@@ -54,6 +55,27 @@ bus = &"SFX"
 process_mode = 1
 stream = ExtResource("5_kwf2b")
 bus = &"SFX"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.25, 0.25)
+color = Color(0.717647, 0.717647, 0.717647, 1)
+energy = 0.35
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("6_5r6jh")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+scale = Vector2(0.5, 0.5)
+color = Color(0.717647, 0.717647, 0.717647, 1)
+energy = 0.25
+shadow_enabled = true
+texture = ExtResource("6_5r6jh")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+color = Color(0.717647, 0.717647, 0.717647, 1)
+energy = 0.1
+shadow_enabled = true
+texture = ExtResource("6_5r6jh")
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_g08mi")
