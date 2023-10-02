@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dryjo6hevh3vg"]
+[gd_scene load_steps=5 format=3 uid="uid://dryjo6hevh3vg"]
 
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_wkioi"]
+[ext_resource type="Texture2D" uid="uid://d1yf4kh1g3m04" path="res://assets/LightSprite.png" id="2_ym68a"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_byds1"]
 
@@ -19,5 +20,9 @@ texture = SubResource("PlaceholderTexture2D_byds1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1iyh7")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_ym68a")
 
 [connection signal="body_entered" from="." to="." method="hit" unbinds=1]
