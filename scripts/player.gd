@@ -20,6 +20,7 @@ signal interacted(player: Player, pos: Vector2)
 @onready var fire_sound := $FireSound as AudioStreamPlayer
 @onready var death_sound := $DeathSound as AudioStreamPlayer
 @onready var hitbox := $Hitbox as Area2D
+@onready var laser := $Muzzle/Laser as Laser
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -84,6 +85,11 @@ func _process(delta):
 	try_fire()
 	try_interact()
 	modify_move_speed()
+	
+	if is_aiming and not laser.visible:
+		laser.show()
+	elif laser.visible:
+		laser.hide()
 
 func handle_player_rotation(delta):
 	##self.look_at(mouse_position) # bad, non-phsysics based rotation
