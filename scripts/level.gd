@@ -7,8 +7,8 @@ signal wave_spawning
 
 const ENEMIES_GROUP := "enemies"
 
-const _ENEMY_COUNT_BASE := 3
-const _ENEMY_COUNT_INCREMENT := 1
+const _ENEMY_COUNT_BASE := 2
+var _ENEMY_COUNT_INCREMENT := 0
 
 @onready
 var enemy_spawner := $EnemySpawner as SpawnerPath
@@ -49,7 +49,8 @@ func start_wave_timer():
 
 func spawn_wave():
 	wave += 1
-	var enemy_count := _ENEMY_COUNT_BASE + _ENEMY_COUNT_INCREMENT * (wave - 1)
+	_ENEMY_COUNT_INCREMENT += wave % 2
+	var enemy_count := _ENEMY_COUNT_BASE + _ENEMY_COUNT_INCREMENT
 	
 	for i in range(enemy_count):
 		var enemy = enemy_spawner.get_mob() as Enemy
