@@ -102,7 +102,7 @@ func hit_by(area: Area2D):
 		var tilemap = get_node("../TileMap") as TileMap
 		var obs_manager = get_node("../ObstacleManager") as ObstacleManager
 		var deathcellposition = tilemap.local_to_map(position)
-		obs_manager.set_tile(deathcellposition, 3, tilemap.get_cell_source_id(0, deathcellposition))
+		obs_manager.set_and_save_tile(deathcellposition, 3, tilemap.get_cell_source_id(0, deathcellposition))
 
 func is_alive():
 	return _alive
