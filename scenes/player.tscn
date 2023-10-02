@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ctn6rvjbqsj2u" path="res://assets/player.png" id="2_8ogfl"]
 [ext_resource type="PackedScene" uid="uid://dryjo6hevh3vg" path="res://scenes/bullet.tscn" id="2_ndr1c"]
 [ext_resource type="AudioStream" uid="uid://qcg2h3pmp2ti" path="res://assets/sfx/shoot.wav" id="4_r7r87"]
-[ext_resource type="AudioStream" path="res://assets/sfx/player_death.wav" id="5_kwf2b"]
+[ext_resource type="AudioStream" uid="uid://boj4cuk4xydqi" path="res://assets/sfx/player_death.wav" id="5_kwf2b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_thv8j"]
 radius = 16.0
@@ -41,9 +41,11 @@ position = Vector2(20, 0)
 [node name="FireSound" type="AudioStreamPlayer" parent="."]
 process_mode = 1
 stream = ExtResource("4_r7r87")
+bus = &"SFX"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 process_mode = 1
 stream = ExtResource("5_kwf2b")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Hitbox" to="." method="kill" unbinds=1]

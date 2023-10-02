@@ -47,9 +47,11 @@ shape = SubResource("CircleShape2D_1wrv4")
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 process_mode = 1
 stream = ExtResource("3_rgo32")
+bus = &"SFX"
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 process_mode = 1
 stream = ExtResource("4_mc2ja")
+bus = &"SFX"
 
 [connection signal="area_entered" from="Hitbox" to="." method="hit_by"]

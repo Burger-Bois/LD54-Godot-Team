@@ -9,6 +9,8 @@ script = ExtResource("1_v0f66")
 
 [node name="ButtonHoverAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_4stqm")
+bus = &"SFX"
 
 [node name="ButtonSelectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_nt42a")
+bus = &"SFX"
