@@ -19,6 +19,13 @@ var player := $Player as Player
 @export_range(0, 0, 1, "or_greater")
 var wave_delay := 5.0
 
+@onready
+var heart1 := $CanvasLayer/HeartIcon1 as Sprite2D
+@onready
+var heart2 := $CanvasLayer/HeartIcon2 as Sprite2D
+@onready
+var heart3 := $CanvasLayer/HeartIcon3 as Sprite2D
+
 var wave := 0
 
 var _playing := false
@@ -27,6 +34,15 @@ var _playing := false
 func _ready():
 	spawn_wave()
 	_playing = true
+
+
+func update_health_ui(health: int):
+	if health == 2:
+		heart3.hide()
+	if health == 1:
+		heart2.hide()
+	if health == 0:
+		heart1.hide()
 
 
 func enemy_killed():

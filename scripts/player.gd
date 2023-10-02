@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal killed
+signal health_changed(health: int)
 signal interacted(player: Player, pos: Vector2)
 
 # consts / exposed vars
@@ -30,7 +31,10 @@ signal interacted(player: Player, pos: Vector2)
 var move_speed: float = 0
 var cripple_speed_modifier: float = 1
 var aim_speed_modifier: float = 1
-var health = _max_health
+var health = _max_health:
+	set(value):
+		health_changed.emit(value)
+		health = value
 var is_aiming := false
 
 var _fire_cooldown_timer: Timer
