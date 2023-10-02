@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://hvj3d41rvuub"]
+[gd_scene load_steps=11 format=3 uid="uid://hvj3d41rvuub"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_iog8e"]
 [ext_resource type="Texture2D" uid="uid://ctn6rvjbqsj2u" path="res://assets/player.png" id="2_8ogfl"]
 [ext_resource type="PackedScene" uid="uid://dryjo6hevh3vg" path="res://scenes/bullet.tscn" id="2_ndr1c"]
+[ext_resource type="Script" path="res://scripts/laser.gd" id="4_r03pl"]
 [ext_resource type="AudioStream" uid="uid://qcg2h3pmp2ti" path="res://assets/sfx/shoot.wav" id="4_r7r87"]
 [ext_resource type="AudioStream" uid="uid://boj4cuk4xydqi" path="res://assets/sfx/player_death.wav" id="5_kwf2b"]
 [ext_resource type="Texture2D" uid="uid://d1yf4kh1g3m04" path="res://assets/LightSprite.png" id="6_5r6jh"]
+[ext_resource type="AudioStream" uid="uid://baarih8qtmw3q" path="res://assets/sfx/player_hit.wav" id="7_g08mi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_thv8j"]
 radius = 16.0
@@ -39,6 +41,11 @@ metadata/_edit_lock_ = true
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(20, 0)
 
+[node name="Laser" type="RayCast2D" parent="Muzzle"]
+target_position = Vector2(1000, 0)
+collision_mask = 10
+script = ExtResource("4_r03pl")
+
 [node name="FireSound" type="AudioStreamPlayer" parent="."]
 process_mode = 1
 stream = ExtResource("4_r7r87")
@@ -69,5 +76,10 @@ color = Color(0.717647, 0.717647, 0.717647, 1)
 energy = 0.1
 shadow_enabled = true
 texture = ExtResource("6_5r6jh")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_g08mi")
+volume_db = -5.778
+bus = &"SFX"
 
 [connection signal="body_entered" from="Hitbox" to="." method="hit"]
