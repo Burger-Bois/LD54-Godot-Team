@@ -146,7 +146,7 @@ func try_fire():
 
 func try_aim():
 	# unholtser gun + aim in one action
-	if Input.is_action_pressed("aim"):
+	if Input.is_action_pressed("aim") and not _carrying:
 		is_aiming = true
 		
 		if Input.is_action_just_pressed("aim"):
