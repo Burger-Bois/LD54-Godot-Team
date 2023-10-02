@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnvn6olu52jd8"]
+[gd_scene load_steps=19 format=3 uid="uid://bnvn6olu52jd8"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_iqx1k"]
 [ext_resource type="Texture2D" uid="uid://cbyb6qadtydrw" path="res://assets/water.png" id="1_x14sm"]
@@ -43,10 +43,14 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vhcuo"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ol7a0"]
+polygon = PackedVector2Array(-12.5, -12, 13, -12, 12.5, 12, -12.5, 12)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1rjhd"]
 texture = ExtResource("3_3dy2v")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_ol7a0")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -68,6 +72,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_58y2h"]
 tile_size = Vector2i(32, 32)
+occlusion_layer_0/light_mask = 3
 physics_layer_0/collision_layer = 4
 physics_layer_1/collision_layer = 8
 physics_layer_1/collision_mask = 2
@@ -105,6 +110,9 @@ enemy_scene = ExtResource("4_bv5dq")
 
 [node name="ObstacleManager" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("9_hw2va")]
 tilemap = NodePath("../TileMap")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
 
 [connection signal="interacted" from="Player" to="ObstacleManager" method="interact_with_position"]
 [connection signal="killed" from="Player" to="." method="finish_game"]

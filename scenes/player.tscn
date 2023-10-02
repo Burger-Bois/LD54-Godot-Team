@@ -50,8 +50,23 @@ stream = ExtResource("5_kwf2b")
 bus = &"SFX"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.25, 0.25)
+color = Color(0.717647, 0.717647, 0.717647, 1)
+energy = 0.35
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("6_5r6jh")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
 scale = Vector2(0.5, 0.5)
-color = Color(0.305882, 0.305882, 0.305882, 1)
+color = Color(0.717647, 0.717647, 0.717647, 1)
+energy = 0.25
+shadow_enabled = true
+texture = ExtResource("6_5r6jh")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+color = Color(0.717647, 0.717647, 0.717647, 1)
+energy = 0.1
 shadow_enabled = true
 texture = ExtResource("6_5r6jh")
 
