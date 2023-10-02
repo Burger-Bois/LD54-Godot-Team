@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal killed
+signal interacted(player: Player, pos: Vector2)
 
 # consts / exposed vars
 @export var _max_move_speed = 150.0
@@ -81,6 +82,7 @@ func _process(delta):
 	handle_player_rotation(delta)
 	try_aim()
 	try_fire()
+	try_interact()
 	modify_move_speed()
 
 func handle_player_rotation(delta):
@@ -125,6 +127,10 @@ func try_aim():
 	else :
 		is_aiming = false
 		aim_speed_modifier = 1
+
+func try_interact():
+	if Input.is_action_just_pressed("interact"):
+		interacted.emit(self, get_global_mouse_position())
 
 func hit(node_hit_by: Node2D):
 	if _invincible or health <= 0:

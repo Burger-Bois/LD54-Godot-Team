@@ -9,6 +9,8 @@ const OBSTACLE_VALID_PLACEMENTS := [1]
 @export var tilemap: TileMap
 @export var interactableArea: PackedScene
 
+@export var interaction_distance := 32.0
+
 var saved_tiles_array = []
 var carrying_obstacle = false:
 	set(value):
@@ -17,20 +19,22 @@ var carrying_obstacle = false:
 
 var _obstacle_area_map := {} as Dictionary # Dictionary[Vectori, InteractableArea]
 
-func _process(_delta):
-	if Input.is_action_just_pressed("interact"):
-		var clicked_tile_coords := tilemap.local_to_map(get_local_mouse_position())
-		var clicked_tile_id := tilemap.get_cell_source_id(0, clicked_tile_coords)
-		
-		if carrying_obstacle and OBSTACLE_VALID_PLACEMENTS.has(clicked_tile_id):
-			set_and_save_tile(clicked_tile_coords, OBSTACLE_TILE_ID, clicked_tile_id)
-			carrying_obstacle = false
-		
-		elif clicked_tile_id == OBSTACLE_TILE_ID:
-			var obstacle_area := _obstacle_area_map[clicked_tile_coords] as InteractableArea
-			if obstacle_area.action_state == "interactable":
-				interact_with_tile(obstacle_area)
+func interact_with_position(player: Player, global_pos: Vector2):
+	var interaction_position := \
+			player.global_position.move_toward(global_pos, interaction_distance)
 	
+	var clicked_tile_coords := tilemap.local_to_map(to_local(interaction_position))
+	var clicked_tile_id := tilemap.get_cell_source_id(0, clicked_tile_coords)
+	
+	if carrying_obstacle and OBSTACLE_VALID_PLACEMENTS.has(clicked_tile_id):
+		set_and_save_tile(clicked_tile_coords, OBSTACLE_TILE_ID, clicked_tile_id)
+		carrying_obstacle = false
+	
+	elif clicked_tile_id == OBSTACLE_TILE_ID:
+		var obstacle_area := _obstacle_area_map[clicked_tile_coords] as InteractableArea
+		if obstacle_area.action_state == "interactable":
+			interact_with_tile(obstacle_area)
+
 ##set tile method that takes in the position and what the tile was
 #save that to an array of tile datas
 func set_and_save_tile(pos: Vector2i, new_tile_ID: int, old_tile_ID: int):
