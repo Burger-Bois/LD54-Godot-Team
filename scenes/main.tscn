@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cq76cmknhfjbu"]
+[gd_scene load_steps=9 format=3 uid="uid://cq76cmknhfjbu"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_mic1g"]
 [ext_resource type="PackedScene" uid="uid://dka03cdpi5e7s" path="res://scenes/ui/main_menu.tscn" id="2_akvxq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cqid43pim76qe" path="res://scenes/ui/pause_menu.tscn" id="5_07pgh"]
 [ext_resource type="PackedScene" uid="uid://bldotg4ouw0h4" path="res://scenes/ui/game_over.tscn" id="6_5jud8"]
 [ext_resource type="PackedScene" uid="uid://dpaiqr5jou8gn" path="res://scenes/ui/flash_message.tscn" id="7_u1spj"]
+[ext_resource type="PackedScene" uid="uid://ds0vrraeivklv" path="res://scenes/ui_audio_player.tscn" id="8_d8g0d"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("ui_canvas_layer", "overlay_canvas_layer")]
 process_mode = 3
@@ -23,3 +24,5 @@ overlay_canvas_layer = NodePath("Overlay")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="UIAudioPlayer" parent="." instance=ExtResource("8_d8g0d")]
