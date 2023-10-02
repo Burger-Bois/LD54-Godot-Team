@@ -26,6 +26,12 @@ var ui_canvas_layer: CanvasLayer
 @export
 var overlay_canvas_layer: CanvasLayer
 
+@onready
+var menu_music := $MenuMusic as AudioStreamPlayer
+
+@onready
+var level_music := $LevelMusic as AudioStreamPlayer
+
 var _main_menu: MainMenu
 var _credits: Credits
 var _level: Level
@@ -57,6 +63,11 @@ func _process(_delta: float):
 func load_main_menu():
 	_unload_all()
 	
+	if not menu_music.playing:
+		menu_music.play()
+	if level_music.playing:
+		level_music.stop()
+	
 	var main_menu := main_menu_scene.instantiate() as MainMenu
 	main_menu.start_button_pressed.connect(load_level)
 	main_menu.credits_button_pressed.connect(load_credits)
@@ -81,6 +92,11 @@ func load_credits():
 
 func load_level():
 	_unload_all()
+	
+	if menu_music.playing:
+		menu_music.stop()
+	if not level_music.playing:
+		level_music.play()
 	
 	# Level
 	var level := level_scene.instantiate() as Level
