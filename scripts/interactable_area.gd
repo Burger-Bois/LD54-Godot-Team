@@ -11,7 +11,8 @@ func _process(_delta):
 			"off":
 				pass
 			"interactable":
-				obstacle_manager.interact_with_tile(global_position, self)
+				if not obstacle_manager.carrying_obstacle:
+					obstacle_manager.interact_with_tile(global_position, self)
 
 func delete_self():
 	queue_free()
