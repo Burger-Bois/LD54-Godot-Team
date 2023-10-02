@@ -1,11 +1,16 @@
 extends Node2D
 class_name ObstacleManager
 
+signal carrying_obstacle_changed(value: bool)
+
 @export var tilemap: TileMap
 @export var interactableArea: PackedScene
 
 var saved_tiles_array = []
-var carrying_obstacle = false
+var carrying_obstacle = false:
+	set(value):
+		carrying_obstacle_changed.emit(value)
+		carrying_obstacle = value
 
 func _process(_delta):
 	if Input.is_action_just_pressed("interact") && carrying_obstacle:

@@ -38,6 +38,8 @@ var _knockback_direction: Vector2
 var _invincible_timer: Timer
 var _invincible := false
 
+var _carrying := false
+
 var mouse_position:Vector2
 
 func _ready():
@@ -101,7 +103,7 @@ func modify_move_speed():
 
 func try_fire():	
 	if Input.is_action_pressed("fire"):
-		if is_aiming and _can_fire:
+		if is_aiming and _can_fire and not _carrying:
 			var b := bullet_scene.instantiate() as Bullet
 			b.direction = Vector2.RIGHT.rotated(rotation)
 			b.global_position = muzzle.global_position
@@ -144,3 +146,6 @@ func die():
 	killed.emit()
 	death_sound.play()
 	call_deferred("set_process_mode", PROCESS_MODE_DISABLED)
+
+func set_carrying(value: bool):
+	_carrying = value
